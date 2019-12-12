@@ -13,9 +13,8 @@ export function postReducer(state=initialState, action){
               ...state, 
               items: action.payload
           };
-        //   case FETCH_POSTS:
-
-        //   return state;
+          case NEW_POSTS:
+          return state;
         default:
           return state;
       }  

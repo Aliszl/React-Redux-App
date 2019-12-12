@@ -1,20 +1,18 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchPosts } from "../state/actions";
 
 class Posts extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     posts: []
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    
+    console.log(props);
+  }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(data => this.setState({ posts: data }));
+    console.log("fetch");
+  this.props.fetchPosts();
   }
   render() {
     const postItems = this.props.posts.map(post => (
@@ -31,7 +29,10 @@ class Posts extends Component {
     );
   }
 }
-
+Posts.propTypes = {
+  fetchPosts: PropTypes.func.isRequired,
+  posts:PropTypes.array.isRequired
+}
 const mapStateToProps = state => ({
   posts: state.posts.items
 });
